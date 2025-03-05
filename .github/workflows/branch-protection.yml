@@ -1,0 +1,44 @@
+name: Branch Protection
+
+on:
+  push:
+    branches: [ main, dev ]
+  pull_request:
+    branches: [ main, dev ]
+
+jobs:
+  branch-protection:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Check branch naming convention
+        run: |
+          BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
+          if [[ ! "$BRANCH_NAME" =~ ^(main|dev|(feat|fix|chore|docs|style|refactor|test|perf)/[a-z0-9-]+)$ ]]; then
+            echo "Branch name '$BRANCH_NAME' does not follow the naming convention"
+            echo "Valid formats: main, dev, feat/*, fix/*, chore/*, docs/*, style/*, refactor/*, test/*, perf/*"
+            exit 1
+          fi
+          
+      - name: Check commit message format
+        run: |
+          COMMIT_MSG=$(git log -1 --pretty=%B)
+          if [[ ! "$COMMIT_MSG" =~ ^(feat|fix|chore|docs|style|refactor|test|perf)(\([a-z-]+\))?: .+ ]]; then
+            echo "Commit message does not follow the conventional commits format"
+            echo "Valid format: type(scope): description"
+            echo "Example: feat(auth): add login functionality"
+            exit 1
+          fi
+          
+      - name: Run tests
+        run: |
+          if [ -d "backend" ]; then
+            cd backend && pip install -r requirements.txt && pytest
+          fi
+          if [ -d "mobile-app" ]; then
+            cd mobile-app && npm install && npm test
+          fi
+          if [ -d "admin-dashboard" ]; then
+            cd admin-dashboard && npm install && npm test
+          fi 

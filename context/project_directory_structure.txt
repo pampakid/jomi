@@ -1,0 +1,22 @@
+jomi/
+├── backend/                   # FastAPI backend
+│   ├── app/
+│   │   ├── api/               # API endpoints
+│   │   ├── core/              # Core configurations
+│   │   ├── db/                # Database models
+│   │   ├── schemas/           # Pydantic schemas 
+│   │   └── services/          # Business logic
+│   ├── tests/                 # Test suite
+│   └── requirements.txt       # Dependencies
+├── mobile/                    # React Native mobile app
+│   ├── src/
+│   │   ├── components/        # Reusable UI components
+│   │   ├── screens/           # App screens
+│   │   ├── navigation/        # Navigation structure
+│   │   ├── services/          # API integration
+│   │   ├── store/             # State management
+│   │   └── utils/             # Helper functions
+│   └── package.json           # Dependencies
+└── admin/                     # Admin dashboard
+    ├── src/                   # React admin interface
+    └── package.json           # Dependencies

@@ -1,0 +1,34 @@
+Technical Summary
+Jomi is a mobile-first real estate discovery platform for the Argentine market that helps property seekers find their ideal properties. The app features:
+
+Core Features:
+
+Swipe-based property discovery
+Detailed property listings with standardized information
+WhatsApp integration for contacting property owners
+Saved properties with collections
+WebView for displaying original listings
+
+
+Technology Stack:
+
+Backend: Python with FastAPI, PostgreSQL
+Mobile: React Native for cross-platform mobile
+Admin: React-based admin dashboard
+
+
+User Flow:
+
+User registers and sets preferences
+Browses properties via swipe interface
+Views detailed information about properties
+Contacts listers via WhatsApp integration
+Saves favorite properties
+
+
+Key Differentiators:
+
+Argentina-specific filters and data fields
+Simplified, engaging user experience with swipe interface
+WhatsApp integration for direct communication
+Enhanced property data with neighborhood insights
